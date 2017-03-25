@@ -165,7 +165,7 @@ namespace PoGo.NecroBot.Logic.Model.Settings
         [JsonProperty(Required = Required.DisallowNull, DefaultValueHandling = DefaultValueHandling.Populate, Order = 24)]
         public bool AutoFavoritePokemon;
         
-        [NecrobotConfig(Description = "Allow bot auto favorite all shiny pokemon", Position = 25)]
+        [NecrobotConfig(Description = "Allow bot auto favorite any shiny pokemon on catch", Position = 25)]
         [DefaultValue(false)]
         [JsonProperty(Required = Required.DisallowNull, DefaultValueHandling = DefaultValueHandling.Populate, Order = 25)]
         public bool AutoFavoriteShinyOnCatch;
