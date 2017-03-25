@@ -14,8 +14,8 @@ namespace PoGo.NecroBot.Logic.Tasks
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var randomCommand = Enumerable.Range(1, 8).OrderBy(x => ActionRandom.Next()).Take(8).ToList();
-            for (int i = 0; i < 8; i++)
+            var randomCommand = Enumerable.Range(1, 9).OrderBy(x => ActionRandom.Next()).Take(9).ToList();
+            for (int i = 0; i < 9; i++)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 TinyIoC.TinyIoCContainer.Current.Resolve<MultiAccountManager>().ThrowIfSwitchAccountRequested();
@@ -69,10 +69,14 @@ namespace PoGo.NecroBot.Logic.Tasks
                                 await FavoritePokemonTask.Execute(session, cancellationToken).ConfigureAwait(false);
                         break;
                     case 7:
+                        if (session.LogicSettings.AutoFavoriteShinyOnCatch)
+                            if (ActionRandom.Next(1, 10) > 4)
+                                await FavoritePokemonTask.Execute(session, cancellationToken).ConfigureAwait(false);
+                    case 8:
                         if (ActionRandom.Next(1, 10) > 4)
                             await RecycleItemsTask.Execute(session, cancellationToken).ConfigureAwait(false);
                         break;
-                    case 8:
+                    case 9:
                         if (session.LogicSettings.AutomaticallyLevelUpPokemon)
                             if (ActionRandom.Next(1, 10) > 4)
                                 await LevelUpPokemonTask.Execute(session, cancellationToken).ConfigureAwait(false);
